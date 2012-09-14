@@ -7,7 +7,6 @@ class Person < ActiveRecord::Base
 
   has_many :discs
 
-
   def gender=(g)
     if ["m", "M", "male", "MALE", "Male"].include?(g)
       g = "M"
