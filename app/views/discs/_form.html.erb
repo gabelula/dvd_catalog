@@ -1,0 +1,33 @@
+<%= form_for(@disc) do |f| %>
+  <% if @disc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@disc.errors.count, "error") %> prohibited this disc from being saved:</h2>
+
+      <ul>
+      <% @disc.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :release_date %><br />
+    <%= f.date_select :release_date %>
+  </div>
+  <div class="field">
+    <%= f.label :summary %><br />
+    <%= f.text_area :summary %>
+  </div>
+  <div class="field">
+    <%= f.label :asin %><br />
+    <%= f.text_field :asin %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
