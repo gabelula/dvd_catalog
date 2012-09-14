@@ -3,4 +3,7 @@ class Disc < ActiveRecord::Base
 
   validates :name, :summary, :presence => true
   validates_uniqueness_of :name
+
+  has_many    :actors
+  belongs_to  :director
 end
