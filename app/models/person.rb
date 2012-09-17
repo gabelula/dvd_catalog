@@ -5,7 +5,7 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :name
   validate :gender_is_valid
 
-  has_many :discs
+  VALID_GENDERS = {'M' => 'Male', 'F' => 'Female', 'O' => 'Other' }
 
   def gender=(g)
     if ["m", "M", "male", "MALE", "Male"].include?(g)
@@ -17,6 +17,11 @@ class Person < ActiveRecord::Base
     end
     write_attribute(:gender, g)
   end
+
+  def gender_humanize
+    return VALID_GENDERS[gender]
+  end
+  private
 
   def gender_is_valid
     errors.add(:gender, "%{attribute} must be one of Masculine, Femenine or Other") unless [nil, "", "M", "F", "O"].include?(gender)
