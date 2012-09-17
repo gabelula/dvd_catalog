@@ -11,13 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914213238) do
+ActiveRecord::Schema.define(:version => 20120917035303) do
+
+  create_table "acts", :force => true do |t|
+    t.integer "actor_id"
+    t.integer "disc_id"
+  end
 
   create_table "discs", :force => true do |t|
     t.string   "name"
     t.date     "release_date"
     t.text     "summary"
     t.string   "asin"
+    t.integer  "director_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -26,11 +32,9 @@ ActiveRecord::Schema.define(:version => 20120914213238) do
     t.string   "name"
     t.date     "birth_date"
     t.string   "gender"
-    t.integer  "disc_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
   end
-
-  add_index "people", ["disc_id"], :name => "index_people_on_disc_id"
 
 end
