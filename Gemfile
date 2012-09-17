@@ -18,9 +18,18 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'less'
+
+  gem "twitter-bootstrap-rails"
 end
 
 gem 'jquery-rails'
+
+gem 'nested_form'
+
+gem 'acts_as_amazon_product'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -35,7 +44,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'
