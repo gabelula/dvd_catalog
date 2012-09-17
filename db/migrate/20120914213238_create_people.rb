@@ -1,13 +1,15 @@
 class CreatePeople < ActiveRecord::Migration
-  def change
+  def up
     create_table :people do |t|
       t.string :name
       t.date :birth_date
       t.string :gender
-      t.references :disc
 
       t.timestamps
     end
-    add_index :people, :disc_id
+  end
+
+  def down
+    drop_table :people
   end
 end
