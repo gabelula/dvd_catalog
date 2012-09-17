@@ -1,0 +1,30 @@
+<div id="notice" ><%= notice %></div>
+
+  <p>
+    <b>Name:</b>
+    <%= @actor.name %>
+  </p>
+
+  <p>
+    <b>Birth date:</b>
+    <%= @actor.birth_date %>
+  </p>
+
+  <p>
+    <b>Gender:</b>
+    <%= @actor.gender_humanize %>
+  </p>
+
+  <% if @actor.discs.any? %>
+    <p>
+      <b>Movies:</b>
+      <ul>
+        <% @actor.discs.each do |disc| %>
+          <li><%= link_to disc.name, disc %></li>
+        <% end %>
+      </ul>
+    </p>
+  <% end %>
+
+<%= link_to 'Edit', edit_actor_path(@actor), :class => "btn btn-large"  %>
+<%= link_to 'Back', actors_path, :class => "btn btn-large"  %>

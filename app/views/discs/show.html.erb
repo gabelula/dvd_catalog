@@ -21,5 +21,24 @@
 </p>
 
 
-<%= link_to 'Edit', edit_disc_path(@disc) %> |
-<%= link_to 'Back', discs_path %>
+<% unless @disc.director.nil? %>
+<p>
+  <b>Director:</b>
+  <%= link_to @disc.director.name, @disc.director %>
+</p>
+<% end %>
+
+<% if @disc.actors.any? %>
+<p>
+  <b>Actors:</b>
+  <ul>
+    <% @disc.actors.each do |actor| %>
+      <li><%= link_to actor.name, actor %></li>
+    <% end %>
+  </ul>
+</p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_disc_path(@disc), :class => "btn btn-large"  %>
+<%= link_to 'Back', discs_path, :class => "btn btn-large"  %>

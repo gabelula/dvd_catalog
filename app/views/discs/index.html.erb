@@ -1,11 +1,9 @@
 <h1>Listing discs</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Release date</th>
-    <th>Summary</th>
-    <th>Asin</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,8 +13,6 @@
   <tr>
     <td><%= disc.name %></td>
     <td><%= disc.release_date %></td>
-    <td><%= disc.summary %></td>
-    <td><%= disc.asin %></td>
     <td><%= link_to 'Show', disc %></td>
     <td><%= link_to 'Edit', edit_disc_path(disc) %></td>
     <td><%= link_to 'Destroy', disc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +22,6 @@
 
 <br />
 
-<%= link_to 'New Disc', new_disc_path %>
+<%= link_to 'New Disc', new_disc_path , :class => "btn btn-large btn-primary disabled" %>
+
+<br />

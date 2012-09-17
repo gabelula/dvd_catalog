@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @director.name %>
+</p>
+
+<p>
+  <b>Birth date:</b>
+  <%= @director.birth_date %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @director.gender_humanize %>
+</p>
+
+<% if @director.discs.any? %>
+<p>
+  <b>Movies:</b>
+  <ul>
+    <% @director.discs.each do |disc| %>
+      <li><%= link_to disc.name, disc %></li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_director_path(@director), :class => "btn btn-large" %>
+<%= link_to 'Back', directors_path , :class => "btn btn-large" %>
