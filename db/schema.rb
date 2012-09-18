@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917035303) do
+ActiveRecord::Schema.define(:version => 20120918061718) do
 
   create_table "acts", :force => true do |t|
     t.integer "actor_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120917035303) do
     t.integer  "director_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "amazon_link"
   end
 
   create_table "people", :force => true do |t|
