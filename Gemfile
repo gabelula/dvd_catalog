@@ -7,7 +7,6 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -28,8 +27,9 @@ gem 'jquery-rails'
 
 gem 'nested_form'
 
-gem 'acts_as_amazon_product'
-
+gem 'asin'
+gem 'httpclient' # optional, see HTTPI
+gem 'rash' # optional, see Response Configuration
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
