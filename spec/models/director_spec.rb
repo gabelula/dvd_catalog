@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Director do
   describe 'Relationships' do
     before do
-      @disc = Factory(:disc)
+      @disc = FactoryGirl.create(:disc)
     #  @director = Factory(:director, @disc, :discs => [@disc])
     end
 
