@@ -1,7 +1,5 @@
-require 'acts_as_amazon_product'
-
 class Disc < ActiveRecord::Base
-  attr_accessible :name, :release_date, :summary, :asin, :director_id, :actors_attributes, :acts_attributes, :director
+  attr_accessible :name, :release_date, :summary, :asin, :amazon_link, :director_id, :actors_attributes, :acts_attributes, :director
 
   validates :name, :summary, :presence => true
   validates_uniqueness_of :name
@@ -15,9 +13,7 @@ class Disc < ActiveRecord::Base
   accepts_nested_attributes_for :acts,    :allow_destroy => true
   accepts_nested_attributes_for :actors
 
-  before_save :load_amazon_dvd unless asin.nil?
-
-  acts_as_amazon_product :asin => 'asin', :access_key => 'AKIAJQLNGTRJF54F2W7A'
+  before_save :get_amazon_info
 
   private
 
@@ -25,8 +21,15 @@ class Disc < ActiveRecord::Base
     errors.add(:release_date, " must not be in the future.") unless release_date.nil? || release_date <= Date.today
   end
 
-  def get_amazon
-    #look at https://github.com/ryandotsmith/bookup/tree/a89e08cb967022ff0643d3204a077a155d6f2009/vendor/plugins/amazon_products
-    #
+  def amazon_client
+    return ASIN::Client.instance
+  end
+
+  def get_amazon_info
+    unless asin.nil?
+      items = self.amazon_client.lookup(asin)
+
+      amazon_link = items.first.raw.DetailPageURL unless items.empty?
+    end
   end
 end
