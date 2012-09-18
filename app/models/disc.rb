@@ -15,16 +15,6 @@ class Disc < ActiveRecord::Base
 
   before_save :get_amazon_info
 
-  private
-
-  def release_date_is_not_future
-    errors.add(:release_date, " must not be in the future.") unless release_date.nil? || release_date <= Date.today
-  end
-
-  def amazon_client
-    return ASIN::Client.instance
-  end
-
   def get_amazon_info
     unless asin.nil?
       items = self.amazon_client.lookup(asin)
@@ -32,4 +22,15 @@ class Disc < ActiveRecord::Base
       amazon_link = items.first.raw.DetailPageURL unless items.empty?
     end
   end
+
+  def amazon_client
+    return ASIN::Client.instance
+  end
+
+  private
+
+  def release_date_is_not_future
+    errors.add(:release_date, " must not be in the future.") unless release_date.nil? || release_date <= Date.today
+  end
+
 end

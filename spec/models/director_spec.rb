@@ -4,7 +4,7 @@ describe Director do
   describe 'Relationships' do
     before do
       @disc = FactoryGirl.create(:disc)
-    #  @director = Factory(:director, @disc, :discs => [@disc])
+      @director = FactoryGirl.create(:director, :discs => [@disc])
     end
 
     it 'should add discs' do
