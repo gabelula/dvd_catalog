@@ -24,6 +24,6 @@ class Person < ActiveRecord::Base
   private
 
   def gender_is_valid
-    errors.add(:gender, "%{attribute} must be one of Masculine, Femenine or Other") unless [nil, "", "M", "F", "O"].include?(gender)
+    errors.add(:gender, "must be one of Masculine, Femenine or Other") unless [nil, "", "M", "F", "O"].include?(gender)
   end
 end

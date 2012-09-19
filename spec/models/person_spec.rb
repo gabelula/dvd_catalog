@@ -2,23 +2,32 @@ require 'spec_helper'
 
 describe Person do
   describe 'Validations' do
-    before do
-      @person = Person.new
-      @person.valid?
+    subject do
+      Person.new
     end
 
     it "should require name"   do
-      @person.errors[:name].should_not be_empty
+      subject.should_not be_valid
+      subject.errors[:name].should include("can't be blank")
     end
 
     it "should require gender" do
-      @person.errors[:gender].should_not be_empty
+      subject.should_not be_valid
+      subject.errors[:gender].should include("can't be blank")
+    end
+
+    it "should have a valid gender" do
+      subject.update_attributes( :name => 'Mariana', :gender => 'any')
+
+      subject.should_not be_valid
+      subject.errors[:gender].should include("must be one of Masculine, Femenine or Other")
     end
 
     it "should not accept repeated names" do
-      @person.name = 'Juana'
-      @person.gender = 'F'
-      @person.save
+      subject.update_attributes( :name => 'Juana',
+                                 :gender => 'F')
+
+      subject.should be_valid
 
       second_person = Person.new(:name => 'Juana')
       second_person.valid?

@@ -1,18 +1,21 @@
-class Disc < ActiveRecord::Base
-  attr_accessible :name, :release_date, :summary, :asin, :amazon_link, :director_id, :actors_attributes, :acts_attributes, :director
+class Movie < ActiveRecord::Base
+  attr_accessible :name, :release_date, :summary, :asin, :actors_attributes, :roles_attributes, :director, :director_id
 
   validates :name, :summary, :presence => true
   validates_uniqueness_of :name
   validate  :release_date_is_not_future
 
-  has_many    :acts, :dependent => :destroy
-  has_many    :actors, :through => :acts
+  # Relationship for the actors
+  has_many    :roles
+  has_many    :actors, :through => :roles
 
-  belongs_to  :director
-
-  accepts_nested_attributes_for :acts,    :allow_destroy => true
+  accepts_nested_attributes_for :roles,    :allow_destroy => true
   accepts_nested_attributes_for :actors
 
+  # Relationship for the director
+  belongs_to  :director
+
+  # Gets information from amazon
   before_save :get_amazon_info
 
   def get_amazon_info
@@ -21,6 +24,7 @@ class Disc < ActiveRecord::Base
 
       amazon_link = items.first.raw.DetailPageURL unless items.empty?
     end
+    return true
   end
 
   def amazon_client

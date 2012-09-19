@@ -1,7 +1,7 @@
 class Director < Person
-  attr_accessible :discs_attributes, :discs
+  attr_accessible :movies_attributes, :movies
 
-  has_many :discs, :dependent => :nullify
+  has_many :movies
 
-  accepts_nested_attributes_for :discs
+  accepts_nested_attributes_for :movies
 end
