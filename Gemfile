@@ -51,5 +51,6 @@ group :test, :development do
 end
 
 group :test do
+  gem "mocha", :require => false
   gem 'factory_girl_rails', :require => false
 end
