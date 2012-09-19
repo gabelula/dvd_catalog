@@ -40,7 +40,7 @@ class MoviesController < ApplicationController
   # POST /Movies
   # POST /Movies.json
   def create
-    @movie = Movie.new(params[:Movie])
+    @movie = Movie.new(params[:movie])
 
     respond_to do |format|
       if @movie.save
@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
 
     respond_to do |format|
-      if @movie.update_attributes(params[:Movie])
+      if @movie.update_attributes(params[:movie])
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
         format.json { head :no_content }
       else

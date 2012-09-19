@@ -19,7 +19,7 @@ class Movie < ActiveRecord::Base
   before_save :get_amazon_info
 
   def get_amazon_info
-    unless asin.nil?
+    unless asin == "" || asin.nil?
       items = self.amazon_client.lookup(asin)
 
       amazon_link = items.first.raw.DetailPageURL unless items.empty?
