@@ -2,11 +2,14 @@ require "spec_helper"
 
 describe MoviesController do
 
+  render_views
+
   it "should get the index" do
     get :index
 
     response.should be_successful
     response.should render_template("index")
+    response.should include("Listing movies")
   end
 
   it "get a new movie" do
@@ -40,6 +43,7 @@ describe MoviesController do
 
     response.should be_successful
     response.should render_template("show")
+    response.should include(movie.name)
   end
 
   it "should edit an movie" do
