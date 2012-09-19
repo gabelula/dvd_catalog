@@ -6,7 +6,7 @@ FactoryGirl.define do
     gender     'F'
   end
 
-  factory :disc, class: Disc do
+  factory :movie, class: Movie do
     name 'Ladri di biciclette'
     release_date Date.new(1948, 1, 1)
     summary 'About a worker that needs a bike as a requirement for a job.'
