@@ -1,8 +1,8 @@
 DvdCatalog::Application.routes.draw do
 
-  root :to => "discs#index"
+  root :to => "movies#index"
 
-  resources :discs do
+  resources :movies do
     resources :actors
     resources :directors
   end

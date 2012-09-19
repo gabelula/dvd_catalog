@@ -2,37 +2,37 @@
 
 <p>
   <b>Name:</b>
-  <%= @disc.name %>
+  <%= @movie.name %>
 </p>
 
 <p>
   <b>Release date:</b>
-  <%= @disc.release_date %>
+  <%= @movie.release_date %>
 </p>
 
 <p>
   <b>Summary:</b>
-  <%= @disc.summary %>
+  <%= @movie.summary %>
 </p>
 
 <p>
   <b>Asin:</b>
-  <%= link_to @disc.asin, @disc.amazon_link %>
+  <%= link_to @movie.asin, @movie.amazon_link %>
 </p>
 
 
-<% unless @disc.director.nil? %>
+<% unless @movie.director.nil? %>
 <p>
   <b>Director:</b>
-  <%= link_to @disc.director.name, @disc.director %>
+  <%= link_to @movie.director.name, @movie.director %>
 </p>
 <% end %>
 
-<% if @disc.actors.any? %>
+<% if @movie.actors.any? %>
 <p>
   <b>Actors:</b>
   <ul>
-    <% @disc.actors.each do |actor| %>
+    <% @movie.actors.each do |actor| %>
       <li><%= link_to actor.name, actor %></li>
     <% end %>
   </ul>
@@ -40,5 +40,5 @@
 
 <% end %>
 
-<%= link_to 'Edit', edit_disc_path(@disc), :class => "btn btn-large"  %>
-<%= link_to 'Back', discs_path, :class => "btn btn-large"  %>
+<%= link_to 'Edit', edit_movie_path(@movie), :class => "btn btn-large"  %>
+<%= link_to 'Back', movies_path, :class => "btn btn-large"  %>

@@ -1,9 +1,9 @@
-<%= nested_form_for @disc, :html => { :class => "form-horizontal" } do |f| %>
-  <% if @disc.errors.any? %>
+<%= nested_form_for @movie, :html => { :class => "form-horizontal" } do |f| %>
+  <% if @movie.errors.any? %>
     <div id="error_explanation" class="alert alert-block">
-      <h2><%= pluralize(@disc.errors.count, "error") %> prohibited this disc from being saved:</h2>
+      <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
       <ul>
-      <% @disc.errors.full_messages.each do |msg| %>
+      <% @movie.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -34,12 +34,12 @@
 
   <div class="field">
     <%= f.label :actor_id %>
-    <%= f.fields_for :acts do |actor_form| %>
+    <%= f.fields_for :roles do |actor_form| %>
       <%= actor_form.select :actor_id, Actor.all.map { |a| [a.name, a.id] }, :include_blank => "Select an actor" %>
       <%= actor_form.link_to_remove "Remove this actor" , :class => "btn btn-mini btn-danger" %>
     <% end %>
     </br>
-    <%= f.link_to_add "Add an actor", :acts , :class => "btn btn-mini" %>
+    <%= f.link_to_add "Add an actor", :roles , :class => "btn btn-mini" %>
   </div>
 
   <div class="actions">
