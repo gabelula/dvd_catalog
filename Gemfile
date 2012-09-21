@@ -22,9 +22,9 @@ group :assets do
 
   gem 'less'
 
-  gem "twitter-bootstrap-rails"
 end
 
+gem "twitter-bootstrap-rails"
 gem 'jquery-rails'
 
 gem 'nested_form'
