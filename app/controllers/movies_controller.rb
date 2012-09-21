@@ -2,12 +2,30 @@ class MoviesController < ApplicationController
   # GET /Movies
   # GET /Movies.json
   def index
-    @movies = Movie.all
+    begin
+      @movies = Movie.search_for(params[:search], :order => params[:order]).all(:include => :actor)
+    rescue => e
+      flash[:error] = e.to_s
+      @movies = Movie.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @movies }
     end
+  end
+
+  def auto_complete_search
+    begin
+      @movies = Movie.complete_for(params[:search])
+    rescue ScopedSearch::QueryNotSupported => e
+      @movies = [{:error => e.to_s }]
+    end
+
+#   respond_to do |format|
+#      format.html
+#      format.json { render json: @movies }
+#    end
   end
 
   # GET /Movies/1

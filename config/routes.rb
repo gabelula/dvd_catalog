@@ -5,6 +5,7 @@ DvdCatalog::Application.routes.draw do
   resources :movies do
     resources :actors
     resources :directors
+#    get :auto_complete_search, :on => :collection
   end
 
   resources :actors

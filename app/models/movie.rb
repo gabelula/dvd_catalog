@@ -16,7 +16,11 @@ class Movie < ActiveRecord::Base
   belongs_to  :director
 
   # Gets information from amazon
-  before_save :get_amazon_info
+  # before_save :get_amazon_info
+
+  scoped_search :on => :name, :complete_value => true, :default_order => true
+  scoped_search :in => :actors, :on => :name, :complete_value => true
+  scoped_search :in => :director, :on => :name, :complete_value => true
 
   def get_amazon_info
     unless asin == "" || asin.nil?
