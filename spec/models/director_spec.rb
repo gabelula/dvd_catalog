@@ -3,8 +3,6 @@ require 'spec_helper'
 describe Director do
   describe 'Relationships' do
     before(:each) do
-      Movie.any_instance.stub('get_amazon_info'){'got_link'}
-
       @movie    = FactoryGirl.create(:movie)
       @director = FactoryGirl.create(:director)
 

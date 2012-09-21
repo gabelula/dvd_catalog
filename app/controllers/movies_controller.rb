@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   # GET /Movies.json
   def index
     begin
-      @movies = Movie.search_for(params[:search], :order => params[:order]).all(:include => :actor)
+      @movies = Movie.search_for(params[:search], :order => params[:order]).all(:include => [:actors, :director])
     rescue => e
       flash[:error] = e.to_s
       @movies = Movie.all
