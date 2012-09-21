@@ -68,9 +68,12 @@ describe Movie do
       Movie.search_for('tren').count.should eql(2)
     end
 
-#    it "should find directors" do
-#      Movie.search_for('Almodovar').first.name.should eql("Otro tren")
-#    end
+   pending "should find directors" do
+      found_movies = Movie.search_for('Almodovar')
+
+      found_movies.count.should eql(1)
+      found_movies.first.name.should eql("Otro tren")
+    end
 
     it "should find actors" do
       Movie.search_for("Williams").first.name.should eql("Un tren llamado deseo")
