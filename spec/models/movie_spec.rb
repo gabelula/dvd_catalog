@@ -52,4 +52,32 @@ describe Movie do
     end
   end
 
+  describe "Search scope" do
+    before do
+      movie1 = FactoryGirl.create(:movie, :name => "El nombre de la rosa")
+      movie2 = FactoryGirl.create(:movie, :name => "Un tren llamado deseo")
+      movie3 = FactoryGirl.create(:movie, :name => "Otro tren", :director => FactoryGirl.create(:director, :name => 'Almodovar'))
+      movie2.actors << FactoryGirl.create(:actor, :name => "Williams")
+    end
+
+    it "should find the string we are looking for" do
+      Movie.search_for('nombre').first.name.should eql("El nombre de la rosa")
+    end
+
+    it "should find all the movies with that string" do
+      Movie.search_for('tren').count.should eql(2)
+    end
+
+   pending "should find directors" do
+      found_movies = Movie.search_for('Almodovar')
+
+      found_movies.count.should eql(1)
+      found_movies.first.name.should eql("Otro tren")
+    end
+
+    it "should find actors" do
+      Movie.search_for("Williams").first.name.should eql("Un tren llamado deseo")
+    end
+  end
+
 end

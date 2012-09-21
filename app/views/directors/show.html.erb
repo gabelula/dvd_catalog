@@ -15,12 +15,12 @@
   <%= @director.gender_humanize %>
 </p>
 
-<% if @director.discs.any? %>
+<% if @director.movies.any? %>
 <p>
   <b>Movies:</b>
   <ul>
-    <% @director.discs.each do |disc| %>
-      <li><%= link_to disc.name, disc %></li>
+    <% @director.movies.each do |movie| %>
+      <li><%= link_to movie.name, movie %></li>
     <% end %>
   </ul>
 </p>

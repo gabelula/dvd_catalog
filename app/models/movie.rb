@@ -15,6 +15,26 @@ class Movie < ActiveRecord::Base
   # Relationship for the director
   belongs_to  :director
 
+  # Gets information from amazon
+  # before_save :get_amazon_info
+
+  scoped_search :on => :name, :complete_value => true, :default_order => true
+  scoped_search :in => :actors, :on => :name, :complete_value => true
+  scoped_search :in => :director, :on => :name, :complete_value => true
+
+  def get_amazon_info
+    unless asin == "" || asin.nil?
+      items = self.amazon_client.lookup(asin)
+
+      amazon_link = items.first.raw.DetailPageURL unless items.empty?
+    end
+    return true
+  end
+
+  def amazon_client
+    return ASIN::Client.instance
+  end
+
   private
 
   def release_date_is_not_future

@@ -25,13 +25,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :discs %>
-    <%= f.fields_for :discs do |disc_form| %>
-      <%= disc_form.select :id, Disc.all.map { |d| [d.name, d.id] }, :include_blank => "Select an disc"  %>
-      <%= disc_form.link_to_remove "Remove this disc", :class => "btn btn-danger btn-mini" %>
+    <%= f.label :movies %>
+    <%= f.fields_for :movies do |movie_form| %>
+      <%= movie_form.select :id, Movie.all.map { |d| [d.name, d.id] }, :include_blank => "Select an movie"  %>
+      <%= movie_form.link_to_remove "Remove this movie", :class => "btn btn-danger btn-mini" %>
     <% end %>
     </br>
-    <p><%= f.link_to_add "Add a disc", :discs, :class => "btn btn-mini" %></p>
+    <p><%= f.link_to_add "Add a movie", :movies, :class => "btn btn-mini" %></p>
   </div>
 
 

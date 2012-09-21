@@ -33,6 +33,8 @@ gem 'asin'
 gem 'httpclient' # optional, see HTTPI
 gem 'rash' # optional, see Response Configuration
 
+gem 'scoped_search'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

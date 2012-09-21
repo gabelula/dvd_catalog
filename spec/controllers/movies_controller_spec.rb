@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe MoviesController do
 
-
   it "should get the index" do
     get :index
 

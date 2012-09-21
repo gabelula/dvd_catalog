@@ -1,5 +1,16 @@
 <h1>Listing movies</h1>
 
+<% if flash[:error] %>
+  <div class="alert alert-error"><%= flash[:error] %></div>
+<% end %>
+
+<div id="movies_search">
+  <%= form_tag movies_path, :method => :get do %>
+    <%= auto_complete_field_tag_jquery(:search, params[:search], {:placeholder => "Type Space For Search Options"}) %>
+    <%= button_tag "Search" %>
+  <% end -%>
+</div>
+
 <table class="table">
   <tr>
     <th>Name</th>
